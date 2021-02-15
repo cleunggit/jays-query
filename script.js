@@ -2,30 +2,47 @@ const app = {};
 
 // variables
 app.shoeCollection = [
-    "aj1.png",
-    "aj2.png",
-    "aj3.png",
-    "aj4.png",
-    "aj5.png",
-    "aj6.png",
-    "aj7.png",
-    "aj8.png",
-    "aj9.png",
-    "aj10.png",
-    "aj11.png",
-    "aj12.png",
-    "aj13.png",
-    "aj14.png",
-]
+    "aj1",
+    "aj2",
+    "aj3",
+    "aj4",
+    "aj5",
+    "aj6",
+    "aj7",
+    "aj8",
+    "aj9",
+    "aj10",
+    "aj11",
+    "aj12",
+    "aj13",
+    "aj14",
+];
+app.favorites = [];
 
 // functions
 app.shoeGenerator = () => {
     let random = Math.floor(Math.random() * 14);
     let img = app.shoeCollection[random]
-    $('.randomShoe').append(`<img src="assets/${img}" alt ="">`);
+    $('.randomShoe h2').text(`these are fire`)
+    $('.randomShoe').append(`<img src="assets/${img}.png" alt ="">`);
+    console.log('generate')
+}
+
+app.favShoeGenerator = () => {
+    let random = Math.floor(Math.random() * app.favorites.length);
+    // let img = app.favorites[random]
+    let img = app.favorites[random]
+    // console.log(app.favorites)
+    if (app.favorites.length === 0) {
+        $('.randomShoe h2').text(`you don't have any favorites`)
+    } else {
+        $('.randomShoe h2').text(`these are fire`)
+        $('.randomShoe').append(`<img src="assets/${img}.png" alt ="">`);
+    }
 }
 
 app.removeShoe = () => {
+    $('.randomShoe h2').text('')
     $('.randomShoe img').remove()
 }
 
@@ -33,16 +50,22 @@ app.addFavorite = () => {
     // toggle favorite button
     $('.favorite').on('click', function(){
         $(this).toggleClass('favorited');
-        console.log('clicked')
-        // let favorited = $(this).find('.favorited');
-        // app.favorites.push('added')
+        let shoeID = $(this).attr('id');
+        app.favorites.push(shoeID);
+        // console.log('clicked', this)
+        console.log(shoeID)
     });
 };
 
 app.toggleModal = () => {
-    $('.wtw').on('click', function() {
+    $('.pfc').on('click', function() {
         $('.modal').toggleClass('show-modal');
         app.shoeGenerator();
+    });
+
+    $('.pff').on('click', function() {
+        $('.modal').toggleClass('show-modal');
+        app.favShoeGenerator();
     });
     
     $('.close-button').on('click', function() {
@@ -56,4 +79,4 @@ $(function() {
     app.toggleModal(); // control modal
     app.addFavorite(); // control favorite
 });
-let favorites = document.getElementsByClassName("favorited");
+// let favorites = document.getElementsByClassName("favorited");
