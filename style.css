@@ -2,8 +2,7 @@ html{line-height:1.15;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}bo
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
-/* main content */
-
+/* variables */
 :root {
     /* colors */
     --white: #fff;
@@ -79,11 +78,6 @@ h2 {
     display: flex;
 }
 
-.main img {
-    width: 20%;
-    margin: 0;
-}
-
 .main h1 span {
     color: var(--infrared);
 }
@@ -94,6 +88,21 @@ h2 {
     margin: 10px 10px;
 }
 
+/* questions */
+.questions {
+    display: none;
+}
+
+.questions-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+}
+
+.question {
+    display: flex;
+}
 /* collection section */
 #collection {
     margin-top: 40px;
@@ -103,15 +112,6 @@ h2 {
     display: flex;
     flex-wrap: wrap;
     height: 100%;
-}
-
-@media (max-width: 600px) {
-    .gallery {
-        flex-direction: column;
-        align-content: center;
-
-        border: 1px solid black;
-    }
 }
 
 .gallery .galleryItem {
@@ -166,22 +166,6 @@ h2 {
     color:var(--infrared);
 }
 
-/* questions */
-.questions {
-    display: none;
-}
-
-.questions-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 200px;
-}
-
-.question {
-    display: flex;
-}
-
 /* modal */
 .modal {
     position: fixed;
@@ -213,8 +197,7 @@ h2 {
 
 .close-button {
     float: right;
-    font-size: var(--font-m);
-    width: 1.5rem;
+    font-size: var(--font-lg);
     text-align: center;
     cursor: pointer;
 }
@@ -229,4 +212,33 @@ h2 {
     visibility: visible;
     transform: scale(1.0);
     transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+/* mobile sizes */
+@media (max-width: 600px) {
+    .questions {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .modal-content {
+        width: 90vw;
+    }
+
+    .close-button {
+        font-size: 50px;
+    }
+    
+    .gallery {
+        flex-direction: column;
+        align-content: center;
+    }
+
+    .gallery .galleryItem {
+        width: calc(100% - 20px);
+    }
+
+    .footer {
+        text-align: center;
+    }
 }

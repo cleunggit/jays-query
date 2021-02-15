@@ -51,7 +51,7 @@ app.addRemoveFavorite = () => {
         let shoeIdx = 0;
         // check if shoe is already in favorites
         if (app.favorites.includes(shoeID)) {
-            // if it exists return the index
+            // return the index
             shoeIdx = app.favorites.indexOf(shoeID)
             // remove the index value from favorites
             app.favorites.splice(shoeIdx, 1)
@@ -68,16 +68,19 @@ app.toggleModal = () => {
     $('.pfc').on('click', function() {
         $('.modal').toggleClass('show-modal');
         app.shoeGenerator();
+        app.disableScroll(); // disable scrolling when modal is open
     });
 
     $('.pff').on('click', function() {
         $('.modal').toggleClass('show-modal');
         app.favShoeGenerator();
+        app.disableScroll(); // disable scrolling when modal is open
     });
     
     $('.close-button').on('click', function() {
         $('.modal').toggleClass('show-modal');
         app.removeShoe();
+        app.enableScroll(); // enable scrolling when modal is closed
     })
 }
 
@@ -85,12 +88,28 @@ app.toggleModal = () => {
 app.removeShoe = () => {
     $('.randomShoe h2').text('')
     $('.randomShoe img').remove()
-}
+};
+
+// disable mouse scrolling
+app.disableScroll = () => { 
+    // Get the current page scroll position 
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop; 
+    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft, 
+    // if any scroll is attempted, set this to the previous value 
+    window.onscroll = function() { 
+        window.scrollTo(scrollLeft, scrollTop); 
+    }; 
+};
+
+// enable mouse scrolling
+app.enableScroll = () => { 
+    window.onscroll = function() {}; 
+};
 
 app.init = function() {
     app.toggleModal();
     app.addRemoveFavorite();
-}
+};
 
 // document ready
 $(function() {
