@@ -1,3 +1,4 @@
+// my app object
 const app = {};
 
 // variables
@@ -20,6 +21,7 @@ app.shoeCollection = [
 app.favorites = [];
 
 // functions
+// generates a random shoe from the collection
 app.shoeGenerator = () => {
     let random = Math.floor(Math.random() * 14);
     let img = app.shoeCollection[random]
@@ -28,6 +30,7 @@ app.shoeGenerator = () => {
     console.log('generate')
 }
 
+// generates a random shoe from selected favorites
 app.favShoeGenerator = () => {
     let random = Math.floor(Math.random() * app.favorites.length);
     let img = app.favorites[random]
@@ -39,21 +42,27 @@ app.favShoeGenerator = () => {
     }
 }
 
-app.removeShoe = () => {
-    $('.randomShoe h2').text('')
-    $('.randomShoe img').remove()
-}
-
-app.addFavorite = () => {
-    // toggle favorite button
+// add and remove shoe from favorites
+app.addRemoveFavorite = () => {
     $('.favorite').on('click', function(){
         $(this).toggleClass('favorited');
+        console.log(app.favorites)
         let shoeID = $(this).attr('id');
-        app.favorites.push(shoeID);
-        // console.log('clicked', this)
-        console.log(shoeID)
+        let shoeIdx = 0;
+        // check if shoe is already in favorites
+        if (app.favorites.includes(shoeID)) {
+            // if it exists return the index
+            shoeIdx = app.favorites.indexOf(shoeID)
+            // remove the index value from favorites
+            app.favorites.splice(shoeIdx, 1)
+            console.log('removed', shoeID)
+        } else {
+            // else add shoeID to the array
+            app.favorites.push(shoeID)
+            console.log('added',shoeID)
+        }
     });
-};
+}
 
 app.toggleModal = () => {
     $('.pfc').on('click', function() {
@@ -72,9 +81,15 @@ app.toggleModal = () => {
     })
 }
 
+// reset modal
+app.removeShoe = () => {
+    $('.randomShoe h2').text('')
+    $('.randomShoe img').remove()
+}
+
 app.init = function() {
-    app.toggleModal(); // control modal
-    app.addFavorite(); // control favorite
+    app.toggleModal();
+    app.addRemoveFavorite();
 }
 
 // document ready
