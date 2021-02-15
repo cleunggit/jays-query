@@ -30,9 +30,7 @@ app.shoeGenerator = () => {
 
 app.favShoeGenerator = () => {
     let random = Math.floor(Math.random() * app.favorites.length);
-    // let img = app.favorites[random]
     let img = app.favorites[random]
-    // console.log(app.favorites)
     if (app.favorites.length === 0) {
         $('.randomShoe h2').text(`you don't have any favorites`)
     } else {
@@ -74,9 +72,12 @@ app.toggleModal = () => {
     })
 }
 
-$(function() {
-    // document ready
+app.init = function() {
     app.toggleModal(); // control modal
     app.addFavorite(); // control favorite
+}
+
+// document ready
+$(function() {
+    app.init()
 });
-// let favorites = document.getElementsByClassName("favorited");

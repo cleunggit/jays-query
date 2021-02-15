@@ -75,6 +75,10 @@ h2 {
     text-align: center;
 }
 
+.main .questions {
+    display: flex;
+}
+
 .main img {
     width: 20%;
     margin: 0;
@@ -87,12 +91,12 @@ h2 {
 .main a {
     display: block;
     width: 200px;
-    margin: 10px 0;
+    margin: 10px 10px;
 }
 
 /* collection section */
 #collection {
-    padding-top: 20px;
+    margin-top: 40px;
 }
 
 .gallery {
