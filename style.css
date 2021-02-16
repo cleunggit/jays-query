@@ -154,7 +154,9 @@ h2 {
 /* footer section */
 .footer {
     margin-top: 20px;
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
 }
 
 .footer p {
@@ -164,6 +166,11 @@ h2 {
 
 .footer p span {
     color:var(--infrared);
+}
+
+.footer a {
+    font-size: var(--font-sm);
+    font-weight: 100;
 }
 
 /* modal */
@@ -239,6 +246,6 @@ h2 {
     }
 
     .footer {
-        text-align: center;
+        flex-direction: column;
     }
 }
